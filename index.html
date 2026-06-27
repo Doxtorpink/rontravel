@@ -32,20 +32,8 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Heebo', sans-serif; background: var(--white); color: var(--text); }
 
-    /* ─── LOGO SVG COMPONENT ─── */
-    .isrotel-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      text-decoration: none;
-    }
-    .isrotel-logo svg { height: 36px; width: auto; }
-    .isrotel-logo.dark svg .sun-body { fill: var(--navy); }
-    .isrotel-logo.dark svg .sun-ray  { stroke: var(--navy); }
-    .isrotel-logo.dark svg .logo-txt { fill: var(--navy); }
-    .isrotel-logo.light svg .sun-body { fill: white; }
-    .isrotel-logo.light svg .sun-ray  { stroke: white; }
-    .isrotel-logo.light svg .logo-txt { fill: white; }
+    /* ─── LOGO ─── */
+    .logo-img { height: 48px; width: auto; display: block; }
 
     /* ─── NAV ─── */
     nav {
@@ -361,25 +349,11 @@
 </head>
 <body>
 
-<!-- ─── LOGO SVG TEMPLATE (reusable via JS clone) ─── -->
-<template id="logo-tpl">
-  <svg viewBox="0 0 178 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle class="sun-body" cx="20" cy="20" r="8"/>
-    <line class="sun-ray" x1="20" y1="7"  x2="20" y2="3"  stroke-width="2.4" stroke-linecap="round"/>
-    <line class="sun-ray" x1="20" y1="33" x2="20" y2="37" stroke-width="2.4" stroke-linecap="round"/>
-    <line class="sun-ray" x1="7"  y1="20" x2="3"  y2="20" stroke-width="2.4" stroke-linecap="round"/>
-    <line class="sun-ray" x1="33" y1="20" x2="37" y2="20" stroke-width="2.4" stroke-linecap="round"/>
-    <line class="sun-ray" x1="11.3" y1="11.3" x2="8.6" y2="8.6"   stroke-width="2" stroke-linecap="round"/>
-    <line class="sun-ray" x1="28.7" y1="28.7" x2="31.4" y2="31.4" stroke-width="2" stroke-linecap="round"/>
-    <line class="sun-ray" x1="28.7" y1="11.3" x2="31.4" y2="8.6"  stroke-width="2" stroke-linecap="round"/>
-    <line class="sun-ray" x1="11.3" y1="28.7" x2="8.6"  y2="31.4" stroke-width="2" stroke-linecap="round"/>
-    <text class="logo-txt" x="46" y="27" font-family="'Heebo',Arial,sans-serif" font-size="20" font-weight="900" letter-spacing="2">ISROTEL</text>
-  </svg>
-</template>
-
 <!-- ─── NAV ─── -->
 <nav id="navbar">
-  <a href="#" class="isrotel-logo dark" id="nav-logo-wrap" aria-label="ישרוטל"></a>
+  <a href="#" aria-label="ישרוטל">
+    <img class="logo-img" src="https://media.isrotel.co.il/umb/27185/isrotel-cube-ltr.svg" alt="Isrotel Logo" />
+  </a>
   <ul class="nav-links">
     <li><a href="#hotels">מלונות</a></li>
     <li><a href="#destinations">יעדים</a></li>
@@ -392,7 +366,9 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="isrotel-logo light" style="margin-bottom:1.6rem; justify-content:center;" id="hero-logo-wrap" aria-label="ישרוטל"></div>
+    <div style="margin-bottom:1.6rem; display:flex; justify-content:center;">
+      <img src="https://media.isrotel.co.il/umb/27185/isrotel-cube-ltr.svg" alt="Isrotel" style="height:72px; width:auto;" />
+    </div>
     <div class="hero-tagline">✦ מלונות יוקרה ישראליים ✦</div>
     <h1>החופשה שחלמתם<br /><em>מתחילה כאן</em></h1>
     <p>30+ מלונות פרמיום — מאילת הטרופית, דרך ים המלח הקסום, ועד לחוף תל אביב</p>
@@ -723,7 +699,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="isrotel-logo light" id="footer-logo-wrap" aria-label="ישרוטל"></div>
+      <img src="https://media.isrotel.co.il/umb/27185/isrotel-cube-ltr.svg" alt="Isrotel" style="height:52px; width:auto; margin-bottom:0.8rem; display:block;" />
       <p>מדריך שותפים בלתי תלוי למלונות ישרוטל — עוזרים לכם למצוא את החופשה המושלמת ברחבי ישראל.</p>
     </div>
     <div class="footer-col">
@@ -748,17 +724,6 @@
 </footer>
 
 <script>
-  /* ── Inject logo SVG everywhere ── */
-  const tpl = document.getElementById('logo-tpl').content;
-  ['nav-logo-wrap','hero-logo-wrap','footer-logo-wrap'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.appendChild(tpl.cloneNode(true));
-  });
-
-  /* ── Hero logo large ── */
-  const heroLogo = document.getElementById('hero-logo-wrap');
-  if (heroLogo) { heroLogo.querySelector('svg').setAttribute('height','50'); }
-
   /* ── Navbar shadow on scroll ── */
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
