@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מלונות ישרוטל | חופשות יוקרה בישראל</title>
+  <meta name="description" content="גלו את מלונות ישרוטל הפרימיום באילת, תל אביב וים המלח. הזמינו עכשיו וקבלו חוויה בלתי נשכחת." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #002D72;
+      --navy-dark: #001A4D;
+      --blue:      #0057B8;
+      --blue-mid:  #1A6FD4;
+      --sky:       #7EC8F4;
+      --pale:      #EBF3FC;
+      --pale2:     #D6E8F7;
+      --white:     #FFFFFF;
+      --off:       #F7FAFD;
+      --text:      #1A2A4A;
+      --muted:     #637083;
+      --border:    rgba(0,45,114,0.11);
+      --star:      #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Heebo', sans-serif; background: var(--white); color: var(--text); }
+
+    /* ─── LOGO SVG COMPONENT ─── */
+    .isrotel-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+    }
+    .isrotel-logo svg { height: 36px; width: auto; }
+    .isrotel-logo.dark svg .sun-body { fill: var(--navy); }
+    .isrotel-logo.dark svg .sun-ray  { stroke: var(--navy); }
+    .isrotel-logo.dark svg .logo-txt { fill: var(--navy); }
+    .isrotel-logo.light svg .sun-body { fill: white; }
+    .isrotel-logo.light svg .sun-ray  { stroke: white; }
+    .isrotel-logo.light svg .logo-txt { fill: white; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; inset-inline: 0;
+      z-index: 200;
+      height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 20px rgba(0,45,114,0.09);
+      transition: box-shadow 0.3s;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-btn {
+      background: var(--navy); color: white;
+      padding: 0.55rem 1.5rem; border-radius: 6px;
+      text-decoration: none; font-weight: 700; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: var(--blue); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,26,77,0.45) 0%, rgba(0,45,114,0.65) 55%, rgba(0,20,60,0.9) 100%),
+        url('https://media.isrotel.co.il/umb/22142/%D7%A8%D7%95%D7%99%D7%90%D7%9C-%D7%90%D7%99%D7%9C%D7%AA-%D7%A8%D7%97%D7%A4%D7%9F3.jpg') center/cover no-repeat;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 800px; padding: 0 1.5rem;
+      margin-top: 70px;
+    }
+    .hero-tagline {
+      display: inline-block;
+      background: rgba(126,200,244,0.18);
+      border: 1px solid rgba(126,200,244,0.55);
+      color: var(--sky);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.4rem 1.2rem; border-radius: 50px;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900; color: white; line-height: 1.1;
+      margin-bottom: 1.3rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--sky); }
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.22rem);
+      color: rgba(255,255,255,0.82); font-weight: 300;
+      max-width: 580px; margin: 0 auto 2.4rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-w { background: white; color: var(--navy); font-weight: 700; font-size: 1rem; padding: 0.85rem 2.4rem; border-radius: 6px; text-decoration: none; transition: 0.2s; }
+    .btn-w:hover { background: var(--pale2); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: white; font-weight: 500; font-size: 1rem; padding: 0.85rem 2.4rem; border-radius: 6px; text-decoration: none; border: 1px solid rgba(255,255,255,0.45); transition: 0.2s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* scroll indicator */
+    .scroll-down {
+      position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+      z-index: 1; color: rgba(255,255,255,0.45); font-size: 1.4rem;
+      animation: bob 2s ease-in-out infinite; text-decoration: none;
+    }
+    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-9px)} }
+
+    /* ─── STATS BAND ─── */
+    .stats-band {
+      background: var(--navy);
+      padding: 0;
+    }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      text-align: center; padding: 2rem 1rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-left: none; }
+    .stat-num { font-size: 2.3rem; font-weight: 900; color: var(--sky); line-height: 1; }
+    .stat-lbl { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-top: 0.35rem; font-weight: 400; }
+
+    /* ─── SECTION BASICS ─── */
+    .section { padding: 5.5rem 1.5rem; }
+    .container { max-width: 1140px; margin: 0 auto; }
+    .sec-label { font-size: 0.73rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+    .sec-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--navy); line-height: 1.15; margin-bottom: 0.9rem; }
+    .sec-sub { color: var(--muted); font-size: 1rem; font-weight: 300; max-width: 500px; }
+    .text-c { text-align: center; }
+    .text-c .sec-sub { margin: 0 auto; }
+
+    /* ─── FEATURED HOTEL (big split card) ─── */
+    .featured { background: var(--off); }
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,45,114,0.13);
+      margin-top: 3rem;
+    }
+    .featured-img {
+      position: relative; min-height: 480px;
+    }
+    .featured-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .featured-badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: var(--navy); color: white;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 0.35rem 0.9rem; border-radius: 50px;
+    }
+    .featured-body {
+      background: white;
+      padding: 3rem 2.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .featured-location { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    .featured-name { font-size: 2rem; font-weight: 900; color: var(--navy); margin-bottom: 1rem; line-height: 1.2; }
+    .featured-stars { color: var(--star); font-size: 1.1rem; margin-bottom: 1rem; }
+    .featured-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 1.8rem; }
+    .featured-perks { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .perk { background: var(--pale); color: var(--navy); font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 50px; }
+    .featured-footer { display: flex; align-items: center; justify-content: space-between; }
+    .featured-price { font-size: 0.8rem; color: var(--muted); }
+    .featured-price strong { display: block; font-size: 2rem; color: var(--navy); font-weight: 900; line-height: 1; }
+    .btn-navy { background: var(--navy); color: white; font-weight: 700; font-size: 0.95rem; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; transition: background 0.2s; display: inline-block; }
+    .btn-navy:hover { background: var(--blue); }
+
+    /* ─── HOTEL TABS ─── */
+    .hotels-sec { background: var(--white); }
+    .tab-bar {
+      display: flex; gap: 0.5rem; margin: 2.5rem 0;
+      border-bottom: 2px solid var(--border);
+    }
+    .tab-btn {
+      padding: 0.7rem 1.5rem;
+      font-family: 'Heebo', sans-serif;
+      font-size: 0.92rem; font-weight: 600;
+      color: var(--muted); background: none; border: none;
+      cursor: pointer; position: relative; bottom: -2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s;
+    }
+    .tab-btn.active { color: var(--navy); border-bottom-color: var(--navy); }
+    .tab-btn:hover:not(.active) { color: var(--blue); }
+
+    .hotels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.6rem;
+    }
+    .hotel-card {
+      border-radius: 12px; overflow: hidden;
+      background: white;
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hotel-card:hover { transform: translateY(-5px); box-shadow: 0 18px 42px rgba(0,45,114,0.13); }
+    .hotel-card[data-dest] { display: flex; }
+    .hotel-card.hidden { display: none !important; }
+
+    .card-img-wrap { position: relative; }
+    .card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card-badge {
+      position: absolute; top: 0.8rem; right: 0.8rem;
+      background: var(--navy); color: white;
+      font-size: 0.7rem; font-weight: 700;
+      padding: 0.28rem 0.75rem; border-radius: 50px;
+    }
+    .card-dest-chip {
+      position: absolute; bottom: 0.8rem; right: 0.8rem;
+      background: rgba(0,45,114,0.82); color: white;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.28rem 0.75rem; border-radius: 50px;
+      backdrop-filter: blur(4px);
+    }
+    .card-body { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; }
+    .card-stars { color: var(--star); font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .card-name { font-size: 1.12rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+    .card-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; flex: 1; }
+    .card-foot {
+      margin-top: 1.1rem; padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+    }
+    .btn-sm { display: block; text-align: center; background: var(--navy); color: white; font-size: 0.88rem; font-weight: 700; padding: 0.65rem 1.2rem; border-radius: 5px; text-decoration: none; transition: background 0.2s; }
+    .btn-sm:hover { background: var(--blue); }
+
+    /* ─── WHY SECTION ─── */
+    .why { background: var(--pale); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .why-card {
+      background: white; border-radius: 12px; padding: 1.8rem 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .why-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,87,184,0.1); }
+    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .why-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── DESTINATIONS MOSAIC ─── */
+    .dest { background: var(--off); }
+    .mosaic {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 230px 230px;
+      gap: 0.8rem;
+      margin-top: 2.5rem;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .mosaic-item { position: relative; overflow: hidden; cursor: pointer; }
+    .mosaic-item.big { grid-row: 1 / 3; }
+    .mosaic-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+    .mosaic-item:hover .mosaic-img { transform: scale(1.07); }
+    .mosaic-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,20,60,0.78) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.2rem;
+    }
+    .mosaic-name { font-size: 1.25rem; font-weight: 800; color: white; }
+    .mosaic-sub { font-size: 0.78rem; color: rgba(255,255,255,0.72); margin-top: 0.15rem; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testi-sec { background: var(--navy-dark); }
+    .testi-sec .sec-label { color: var(--sky); }
+    .testi-sec .sec-title { color: white; }
+    .testi-sec .sec-sub { color: rgba(255,255,255,0.55); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 3rem; }
+    .testi-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 1.8rem;
+      transition: background 0.25s;
+    }
+    .testi-card:hover { background: rgba(255,255,255,0.09); }
+    .testi-quote { font-size: 2.5rem; color: var(--sky); line-height: 1; margin-bottom: 0.8rem; }
+    .testi-text { font-size: 0.9rem; color: rgba(255,255,255,0.78); line-height: 1.75; font-style: italic; margin-bottom: 1.3rem; }
+    .testi-stars { color: var(--star); font-size: 0.85rem; margin-bottom: 1rem; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-av { width: 38px; height: 38px; border-radius: 50%; background: var(--blue); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+    .testi-name { font-weight: 700; font-size: 0.88rem; color: white; }
+    .testi-meta { font-size: 0.75rem; color: rgba(255,255,255,0.45); }
+
+    /* ─── CTA ─── */
+    .cta-split {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 480px;
+    }
+    .cta-img { position: relative; }
+    .cta-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .cta-content {
+      background: var(--navy);
+      padding: 4rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .cta-content .sec-label { color: var(--sky); }
+    .cta-content h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); font-weight: 900; color: white; line-height: 1.2; margin-bottom: 1rem; }
+    .cta-content h2 em { font-style: normal; color: var(--sky); }
+    .cta-content p { color: rgba(255,255,255,0.72); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; max-width: 360px; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--navy-dark); padding: 3.5rem 1.5rem 2rem; }
+    .footer-grid {
+      max-width: 1140px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.7; margin-top: 1rem; max-width: 240px; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sky); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: rgba(255,255,255,0.55); font-size: 0.87rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: white; }
+    .footer-contact-row { font-size: 0.87rem; color: rgba(255,255,255,0.55); margin-bottom: 0.55rem; }
+    .footer-contact-row a { color: var(--sky); text-decoration: none; }
+    .footer-bottom {
+      max-width: 1140px; margin: 1.8rem auto 0;
+      font-size: 0.73rem; color: rgba(255,255,255,0.25); text-align: center; line-height: 1.7;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-img { min-height: 280px; }
+      .cta-split { grid-template-columns: 1fr; }
+      .cta-img { height: 260px; position: relative; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat-item:nth-child(2) { border-left: none; }
+      .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; }
+      .mosaic-item.big { grid-row: auto; grid-column: 1 / 3; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── LOGO SVG TEMPLATE (reusable via JS clone) ─── -->
+<template id="logo-tpl">
+  <svg viewBox="0 0 178 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle class="sun-body" cx="20" cy="20" r="8"/>
+    <line class="sun-ray" x1="20" y1="7"  x2="20" y2="3"  stroke-width="2.4" stroke-linecap="round"/>
+    <line class="sun-ray" x1="20" y1="33" x2="20" y2="37" stroke-width="2.4" stroke-linecap="round"/>
+    <line class="sun-ray" x1="7"  y1="20" x2="3"  y2="20" stroke-width="2.4" stroke-linecap="round"/>
+    <line class="sun-ray" x1="33" y1="20" x2="37" y2="20" stroke-width="2.4" stroke-linecap="round"/>
+    <line class="sun-ray" x1="11.3" y1="11.3" x2="8.6" y2="8.6"   stroke-width="2" stroke-linecap="round"/>
+    <line class="sun-ray" x1="28.7" y1="28.7" x2="31.4" y2="31.4" stroke-width="2" stroke-linecap="round"/>
+    <line class="sun-ray" x1="28.7" y1="11.3" x2="31.4" y2="8.6"  stroke-width="2" stroke-linecap="round"/>
+    <line class="sun-ray" x1="11.3" y1="28.7" x2="8.6"  y2="31.4" stroke-width="2" stroke-linecap="round"/>
+    <text class="logo-txt" x="46" y="27" font-family="'Heebo',Arial,sans-serif" font-size="20" font-weight="900" letter-spacing="2">ISROTEL</text>
+  </svg>
+</template>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <a href="#" class="isrotel-logo dark" id="nav-logo-wrap" aria-label="ישרוטל"></a>
+  <ul class="nav-links">
+    <li><a href="#hotels">מלונות</a></li>
+    <li><a href="#destinations">יעדים</a></li>
+    <li><a href="#reviews">חוות דעת</a></li>
+  </ul>
+  <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="nav-btn">הזמן עכשיו</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="isrotel-logo light" style="margin-bottom:1.6rem; justify-content:center;" id="hero-logo-wrap" aria-label="ישרוטל"></div>
+    <div class="hero-tagline">✦ מלונות יוקרה ישראליים ✦</div>
+    <h1>החופשה שחלמתם<br /><em>מתחילה כאן</em></h1>
+    <p>30+ מלונות פרמיום — מאילת הטרופית, דרך ים המלח הקסום, ועד לחוף תל אביב</p>
+    <div class="hero-btns">
+      <a href="#hotels" class="btn-w">גלה את המלונות</a>
+      <a href="#destinations" class="btn-ghost">כל היעדים</a>
+    </div>
+  </div>
+  <a href="#stats" class="scroll-down" aria-hidden="true">↓</a>
+</section>
+
+<!-- ─── STATS BAND ─── -->
+<div class="stats-band" id="stats">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">30+</div><div class="stat-lbl">מלונות פרמיום</div></div>
+    <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-lbl">דירוג ממוצע</div></div>
+    <div class="stat-item"><div class="stat-num">50K+</div><div class="stat-lbl">לקוחות מרוצים</div></div>
+    <div class="stat-item"><div class="stat-num">25+</div><div class="stat-lbl">שנות ניסיון</div></div>
+  </div>
+</div>
+
+<!-- ─── FEATURED ─── -->
+<section class="section featured" id="featured">
+  <div class="container">
+    <div class="sec-label">המלון המומלץ</div>
+    <h2 class="sec-title">Royal Beach Eilat — דגל הרשת</h2>
+
+    <div class="featured-card">
+      <div class="featured-img">
+        <img src="https://media.isrotel.co.il/umb/22142/%D7%A8%D7%95%D7%99%D7%90%D7%9C-%D7%90%D7%99%D7%9C%D7%AA-%D7%A8%D7%97%D7%A4%D7%9F3.jpg"
+             alt="Royal Beach Eilat מבט רחפן" loading="eager" />
+        <div class="featured-badge">🔥 בעל דירוג גבוה ביותר</div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-location">📍 אילת • ים האדום</div>
+        <h3 class="featured-name">Royal Beach Eilat by Isrotel Exclusive</h3>
+        <div class="featured-stars">★★★★★</div>
+        <p class="featured-desc">מלון הדגל של ישרוטל על חוף ים האדום. חוף פרטי בלעדי, 3 בריכות מפוארות, ספא עולמי, ומסעדות גורמה שיגרמו לחופשה שלכם להיות בלתי נשכחת.</p>
+        <div class="featured-perks">
+          <span class="perk">🏖️ חוף פרטי</span>
+          <span class="perk">♨️ ספא</span>
+          <span class="perk">🍽️ 5 מסעדות</span>
+          <span class="perk">🏊 3 בריכות</span>
+          <span class="perk">🤿 צלילה</span>
+        </div>
+        <div class="featured-footer">
+          <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-navy">לפרטים לחץ כאן ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOTELS WITH TABS ─── -->
+<section class="section hotels-sec" id="hotels">
+  <div class="container">
+    <div class="sec-label">כל המלונות</div>
+    <h2 class="sec-title">בחרו את המלון המושלם</h2>
+    <p class="sec-sub">סננו לפי יעד ומצאו את החופשה שתמיד חלמתם עליה</p>
+
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" data-filter="all"  role="tab">הכל</button>
+      <button class="tab-btn"        data-filter="eilat" role="tab">אילת</button>
+      <button class="tab-btn"        data-filter="telaviv" role="tab">תל אביב</button>
+      <button class="tab-btn"        data-filter="deadsea" role="tab">ים המלח</button>
+    </div>
+
+    <div class="hotels-grid" id="hotel-grid">
+
+      <!-- EILAT 1: Royal Garden -->
+      <div class="hotel-card" data-dest="eilat">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/31297/royal-garden-eilat-11.jpg" alt="Royal Garden Eilat" loading="lazy" />
+          <span class="card-badge">⭐ מומלץ</span>
+          <span class="card-dest-chip">אילת</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">Royal Garden Eilat</div>
+          <p class="card-desc">ריזורט יוקרתי עם גני עצים טרופיים, בריכות מדהימות וחוויה ים-תיכונית עשירה. פינת גן עדן בלב אילת.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EILAT 2: Sport Club -->
+      <div class="hotel-card" data-dest="eilat">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/22059/%D7%A1%D7%A4%D7%95%D7%A8%D7%98-%D7%A8%D7%97%D7%A4%D7%9F2.jpg" alt="Isrotel Sport Club" loading="lazy" />
+          <span class="card-dest-chip">אילת</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">Isrotel Sport Club</div>
+          <p class="card-desc">מלון ספורט ובריאות על חוף ים האדום. 8 מסעדות, חוף פרטי, צלילה, ספא — לאוהבי פעילות ורוגע כאחד.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EILAT 3: King Solomon -->
+      <div class="hotel-card" data-dest="eilat">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/29488/dji_fly_20230523_080232_561_1684818535372_photo-6-copy.jpg" alt="King Solomon Eilat" loading="lazy" />
+          <span class="card-badge">🌊 ים האדום</span>
+          <span class="card-dest-chip">אילת</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">King Solomon Eilat</div>
+          <p class="card-desc">מלון מפואר בלב אילת עם נוף מרהיב לים האדום. חוויה אותנטית ושירות מלכותי ברמה בינלאומית.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EILAT 4: Lagoona -->
+      <div class="hotel-card" data-dest="eilat">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/29116/dsc_5922liorgrundmansmall.jpg" alt="Isrotel Lagoona" loading="lazy" />
+          <span class="card-badge">💎 בוטיק</span>
+          <span class="card-dest-chip">אילת</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">Isrotel Lagoona</div>
+          <p class="card-desc">מלון בוטיק רומנטי בלגונה פרטית. ג'קוזי פרטי בכל חדר, אווירה אינטימית — אידיאלי לזוגות.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEL AVIV 1: Royal Beach TLV -->
+      <div class="hotel-card" data-dest="telaviv">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/31455/%D7%90%D7%93%D7%A8-%D7%A8%D7%95%D7%99%D7%90%D7%9C-%D7%91%D7%99%D7%A5-%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91.jpg" alt="Royal Beach Tel Aviv" loading="lazy" />
+          <span class="card-badge">⭐ מומלץ</span>
+          <span class="card-dest-chip">תל אביב</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">Royal Beach Tel Aviv</div>
+          <p class="card-desc">על חוף הים בתל אביב עם גישה ישירה לחוף הים התיכון. עיצוב מודרני, מסעדת שף ומגוון חדרים יוקרתיים.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEL AVIV 2: Sea Tower -->
+      <div class="hotel-card" data-dest="telaviv">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/30868/135505_picturs_1600x4003.jpg" alt="Sea Tower Tel Aviv" loading="lazy" />
+          <span class="card-dest-chip">תל אביב</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★</div>
+          <div class="card-name">Sea Tower by Isrotel Design</div>
+          <p class="card-desc">גורד שחקים יוקרתי בלב תל אביב — 30 קומות עם נוף פנורמי לים. מושלם למטיילים ואנשי עסקים.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEAD SEA 1: Nevo -->
+      <div class="hotel-card" data-dest="deadsea">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/30837/dsc_5347liorgrundmansmall.jpg" alt="Isrotel Nevo Dead Sea" loading="lazy" />
+          <span class="card-badge">♨️ ספא פרמיום</span>
+          <span class="card-dest-chip">ים המלח</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">Isrotel Nevo Dead Sea</div>
+          <p class="card-desc">מלון יוקרה על שפת ים המלח עם ספא מיוחד ממינרלי ים המלח. כל חדר עם מרפסת ונוף ישיר לים.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEAD SEA 2: Noga -->
+      <div class="hotel-card" data-dest="deadsea">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/30765/dsc_5498liorgrundmansmall.jpg" alt="Isrotel Noga Dead Sea" loading="lazy" />
+          <span class="card-badge">👨‍👩‍👧 מושלם למשפחות</span>
+          <span class="card-dest-chip">ים המלח</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★</div>
+          <div class="card-name">Isrotel Noga Dead Sea</div>
+          <p class="card-desc">מלון משפחתי מהמובחרים בים המלח. גני משחקים, מועדון ילדים, בריכות מחוממות ואוכל בשפע לכל המשפחה.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEAD SEA 3: Kayma -->
+      <div class="hotel-card" data-dest="deadsea">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://media.isrotel.co.il/umb/34717/is-key-image-for-web-8259.jpg" alt="Isrotel Kayma Dead Sea" loading="lazy" />
+          <span class="card-badge">✨ חדש ומיוחד</span>
+          <span class="card-dest-chip">ים המלח</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★★★★★</div>
+          <div class="card-name">Isrotel Kayma Dead Sea</div>
+          <p class="card-desc">בוטיק מלון חדש ומרהיב על שפת ים המלח. 40 חדרים פרטיים עם בריכת אינפיניטי. מושלם לפוגה רומנטית.</p>
+          <div class="card-foot">
+            <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-sm">לפרטים לחץ כאן ›</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY ─── -->
+<section class="section why" id="why">
+  <div class="container">
+    <div class="text-c">
+      <div class="sec-label">למה ישרוטל</div>
+      <h2 class="sec-title">חוויה שלא תשכחו לעולם</h2>
+      <p class="sec-sub">הסטנדרט הגבוה ביותר של אירוח ישראלי</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🏖️</div><h3>חופים פרטיים</h3><p>גישה בלעדית לחופים פרטיים מפוארים עם שירות מגבות ומיטות שמש</p></div>
+      <div class="why-card"><div class="why-icon">🍽️</div><h3>גסטרונומיה עולמית</h3><p>שפים מפורסמים, מסעדות גורמה ובראנץ' שישי אגדי בכל מלון</p></div>
+      <div class="why-card"><div class="why-icon">🧖</div><h3>ספא יוקרתי</h3><p>טיפולי ספא מפנקים עם מינרלים ישראלים ייחודיים — רוגע אמיתי</p></div>
+      <div class="why-card"><div class="why-icon">👨‍👩‍👧</div><h3>לכל המשפחה</h3><p>מועדוני ילדים, בריכות מחוממות ופעילויות לכל גיל</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DESTINATIONS MOSAIC ─── -->
+<section class="section dest" id="destinations">
+  <div class="container">
+    <div class="sec-label">יעדים</div>
+    <h2 class="sec-title">גלו את ישראל מחדש</h2>
+    <p class="sec-sub">כל יעד — חוויה אחרת לגמרי</p>
+    <div class="mosaic">
+      <div class="mosaic-item big">
+        <img class="mosaic-img" src="https://media.isrotel.co.il/umb/22059/%D7%A1%D7%A4%D7%95%D7%A8%D7%98-%D7%A8%D7%97%D7%A4%D7%9F2.jpg" alt="אילת" loading="lazy" />
+        <div class="mosaic-overlay">
+          <div class="mosaic-name">אילת</div>
+          <div class="mosaic-sub">8 מלונות • ים האדום • חוף פרטי</div>
+        </div>
+      </div>
+      <div class="mosaic-item">
+        <img class="mosaic-img" src="https://media.isrotel.co.il/umb/31455/%D7%90%D7%93%D7%A8-%D7%A8%D7%95%D7%99%D7%90%D7%9C-%D7%91%D7%99%D7%A5-%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91.jpg" alt="תל אביב" loading="lazy" />
+        <div class="mosaic-overlay">
+          <div class="mosaic-name">תל אביב</div>
+          <div class="mosaic-sub">3 מלונות • ים תיכון</div>
+        </div>
+      </div>
+      <div class="mosaic-item">
+        <img class="mosaic-img" src="https://media.isrotel.co.il/umb/30837/dsc_5347liorgrundmansmall.jpg" alt="ים המלח" loading="lazy" />
+        <div class="mosaic-overlay">
+          <div class="mosaic-name">ים המלח</div>
+          <div class="mosaic-sub">3 מלונות • ספא ומינרלים</div>
+        </div>
+      </div>
+      <div class="mosaic-item">
+        <img class="mosaic-img" src="https://media.isrotel.co.il/umb/30987/dolphin-reef-eilat-diving-with-dolphins_15391214725_o.jpg" alt="צלילה אילת" loading="lazy" />
+        <div class="mosaic-overlay">
+          <div class="mosaic-name">הרפתקאות ים</div>
+          <div class="mosaic-sub">צלילה • דולפינים • שנורקל</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section testi-sec" id="reviews">
+  <div class="container">
+    <div class="text-c">
+      <div class="sec-label">חוות דעת</div>
+      <h2 class="sec-title">מה אומרים הלקוחות</h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,0.5)">אלפי נופשים מרוצים</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">חופשה שלא נשכחת! ה-Royal Beach באילת פשוט פנטסטי. השירות, האוכל, הנוף — הכל ברמה אחרת לגמרי. נחזור בהחלט!</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author"><div class="testi-av">מ</div><div><div class="testi-name">מיכל כהן</div><div class="testi-meta">אילת • פברואר 2025</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">הזמנו ב-Royal Beach תל אביב ליום הנישואין שלנו. הספא, הנוף מהחדר, הארוחת בוקר — חלום! מומלץ בחום לזוגות.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author"><div class="testi-av">ד</div><div><div class="testi-name">דני ואביגיל לוי</div><div class="testi-meta">תל אביב • ינואר 2025</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">ה-Noga בים המלח מושלם למשפחות. מועדון הילדים, הבריכות, האוכל — הכל מדהים. הילדים לא רצו לעזוב!</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author"><div class="testi-av">ר</div><div><div class="testi-name">רחל ויוסי מנשה</div><div class="testi-meta">ים המלח • מרץ 2025</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA SPLIT ─── -->
+<section class="cta-split" id="book">
+  <div class="cta-img">
+    <img src="https://media.isrotel.co.il/umb/34717/is-key-image-for-web-8259.jpg" alt="ישרוטל ים המלח" loading="lazy" />
+  </div>
+  <div class="cta-content">
+    <div class="sec-label">הזמינו עכשיו</div>
+    <h2>מוכנים לחופשת<br /><em>החלומות שלכם?</em></h2>
+    <p>אל תחכו — המחירים עולים ככל שמתקרבים לתאריך. הזמינו היום ושמרו את המקום הטוב ביותר.</p>
+    <a href="YOUR_AFFILIATE_LINK" target="_blank" rel="noopener" class="btn-w" style="align-self:flex-start; font-size:1rem; padding:0.9rem 2.4rem;">
+      הזמן עכשיו ›
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="isrotel-logo light" id="footer-logo-wrap" aria-label="ישרוטל"></div>
+      <p>מדריך שותפים בלתי תלוי למלונות ישרוטל — עוזרים לכם למצוא את החופשה המושלמת ברחבי ישראל.</p>
+    </div>
+    <div class="footer-col">
+      <h4>יעדים</h4>
+      <ul>
+        <li><a href="YOUR_AFFILIATE_LINK">מלונות אילת</a></li>
+        <li><a href="YOUR_AFFILIATE_LINK">מלונות תל אביב</a></li>
+        <li><a href="YOUR_AFFILIATE_LINK">מלונות ים המלח</a></li>
+        <li><a href="YOUR_AFFILIATE_LINK">כל המלונות</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>צור קשר</h4>
+      <div class="footer-contact-row">📧 <a href="mailto:ronisrotel@outlook.com">ronisrotel@outlook.com</a></div>
+      <div class="footer-contact-row">📍 ישראל</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    דף זה הוא דף שיווק שותפים עצמאי. אנו מקבלים עמלה בגין הפניות למלונות ישרוטל. ישרוטל® הוא סימן מסחרי רשום של קבוצת ישרוטל. המחירים לצורך המחשה בלבד.
+    <br/>© 2025 כל הזכויות שמורות.
+  </div>
+</footer>
+
+<script>
+  /* ── Inject logo SVG everywhere ── */
+  const tpl = document.getElementById('logo-tpl').content;
+  ['nav-logo-wrap','hero-logo-wrap','footer-logo-wrap'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.appendChild(tpl.cloneNode(true));
+  });
+
+  /* ── Hero logo large ── */
+  const heroLogo = document.getElementById('hero-logo-wrap');
+  if (heroLogo) { heroLogo.querySelector('svg').setAttribute('height','50'); }
+
+  /* ── Navbar shadow on scroll ── */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 50
+      ? '0 4px 28px rgba(0,45,114,0.16)'
+      : '0 1px 20px rgba(0,45,114,0.09)';
+  });
+
+  /* ── Hotel tab filter ── */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('#hotel-grid .hotel-card').forEach(card => {
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.dest !== filter);
+      });
+    });
+  });
+
+  /* ── Scroll-reveal ── */
+  const reveal = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.hotel-card, .why-card, .testi-card, .featured-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    reveal.observe(el);
+  });
+</script>
+
+</body>
+</html>
