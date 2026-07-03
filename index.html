@@ -60,7 +60,7 @@
 
     /* ─── SCROLL PROGRESS ─── */
     #scroll-progress {
-      position: fixed; top: 0; left: 0; right: 0;
+      position: fixed; top: 42px; left: 0; right: 0;
       height: 3px; z-index: 9999;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
       transform-origin: left;
@@ -70,7 +70,7 @@
 
     /* ─── NAV ─── */
     nav {
-      position: fixed; top: 0; inset-inline: 0;
+      position: fixed; top: 42px; inset-inline: 0;
       z-index: 200;
       height: 74px;
       display: flex; align-items: center; justify-content: space-between;
@@ -187,7 +187,7 @@
     .hero-inner {
       position: relative; z-index: 2;
       max-width: 860px; padding: 0 1.5rem;
-      margin-top: 74px;
+      margin-top: 116px;
     }
     .hero-logo-wrap {
       margin-bottom: 2rem;
@@ -678,6 +678,77 @@
       font-size: 0.72rem; color: rgba(255,255,255,0.2); text-align: center; line-height: 1.8;
     }
 
+    /* ─── PROMO URGENCY BAR ─── */
+    #promo-bar {
+      position: fixed; top: 0; inset-inline: 0; height: 42px; z-index: 300;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      background: linear-gradient(90deg, var(--navy-dark) 0%, var(--blue) 50%, var(--navy-dark) 100%);
+      border-bottom: 1px solid rgba(245,169,63,0.35);
+      color: white; font-size: 0.82rem; font-weight: 600; padding: 0 0.8rem;
+    }
+    #promo-bar .promo-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .promo-cd { display: flex; gap: 0.4rem; align-items: baseline; white-space: nowrap; }
+    .promo-cd #promo-cd-prefix { color: rgba(255,255,255,0.75); font-weight: 600; }
+    .promo-cd b { color: var(--gold-light); font-weight: 800; font-variant-numeric: tabular-nums; }
+    #promo-bar .promo-btn {
+      background: var(--gold); color: var(--navy-dark); font-weight: 800;
+      padding: 0.28rem 1rem; border-radius: 3px; text-decoration: none;
+      font-size: 0.78rem; white-space: nowrap; transition: background 0.2s;
+    }
+    #promo-bar .promo-btn:hover { background: var(--gold-light); }
+
+    /* ─── CARD HOVER CTA OVERLAY ─── */
+    .card-hover-cta {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(to top, rgba(7,26,51,0.72) 0%, rgba(7,26,51,0.15) 60%, transparent 100%);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    }
+    .card-hover-cta span {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy-dark); font-weight: 800; font-size: 0.88rem;
+      padding: 0.6rem 1.5rem; border-radius: 4px;
+      transform: translateY(8px); transition: transform 0.3s;
+      box-shadow: 0 8px 22px rgba(7,26,51,0.35);
+    }
+    .hotel-card:hover .card-hover-cta,
+    .featured-card:hover .card-hover-cta { opacity: 1; }
+    .hotel-card:hover .card-hover-cta span,
+    .featured-card:hover .card-hover-cta span { transform: translateY(0); }
+
+    /* ─── STICKY BOOKING BAR ─── */
+    #sticky-cta {
+      position: fixed; bottom: 1rem; left: 50%;
+      transform: translate(-50%, 180%); z-index: 400;
+      display: flex; align-items: center; gap: 0.9rem;
+      background: rgba(7,26,51,0.96); border: 1px solid rgba(245,169,63,0.4);
+      border-radius: 40px; padding: 0.55rem 1.4rem 0.55rem 0.7rem;
+      color: white; font-size: 0.85rem; font-weight: 600; white-space: nowrap;
+      box-shadow: 0 12px 34px rgba(7,26,51,0.4);
+      transition: transform 0.45s ease; backdrop-filter: blur(8px);
+    }
+    #sticky-cta.visible { transform: translate(-50%, 0); }
+    #sticky-cta .sticky-btn {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy-dark); font-weight: 800; font-size: 0.85rem;
+      padding: 0.5rem 1.3rem; border-radius: 30px; text-decoration: none;
+      animation: ctaPulse 2.4s ease-in-out infinite;
+    }
+
+    /* ─── TRUST LINE & BADGES ─── */
+    .hero-trust {
+      margin-top: 1.3rem; font-size: 0.78rem; color: rgba(255,255,255,0.62);
+      font-weight: 400; letter-spacing: 0.02em;
+      animation: fadeUp 1s ease 1.1s both;
+    }
+    .verified { color: #2E9E5B; font-weight: 700; }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 4px 16px rgba(245,169,63,0.3); }
+      50%      { box-shadow: 0 4px 28px rgba(245,169,63,0.75); }
+    }
+    .nav-btn { animation: ctaPulse 2.4s ease-in-out infinite; }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       .featured-card { grid-template-columns: 1fr; }
@@ -688,6 +759,12 @@
     }
     @media (max-width: 640px) {
       nav { padding: 0 1.2rem; }
+      #promo-bar { font-size: 0.7rem; gap: 0.55rem; }
+      #promo-bar .promo-text { display: none; }
+      #sticky-cta {
+        width: calc(100% - 1.4rem); justify-content: space-between;
+        padding-inline: 1rem 0.6rem; font-size: 0.78rem; bottom: 0.7rem;
+      }
       .nav-links { display: none; }
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .stat-item:nth-child(2) { border-left: none; }
@@ -702,6 +779,17 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5TXZ8GZV"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<!-- ─── PROMO URGENCY BAR ─── -->
+<div id="promo-bar">
+  <span class="promo-text" data-i18n="promo.text">🔥 מבצעי הקיץ של ישרוטל — עד 25% הנחה, לזמן מוגבל</span>
+  <span class="promo-cd">
+    <span id="promo-cd-prefix"></span>
+    <b id="promo-cd-days"></b>
+    <b id="promo-cd-time" dir="ltr"></b>
+  </span>
+  <a href="https://www.isrotel.co.il/?iTrack=9pQAHMNuLDwTHeh_Q1FgdYXVAW7nrsv_Ts9pQAHMNuLDwTHehtS" target="_blank" rel="noopener" class="promo-btn" data-i18n="promo.btn">להזמנה ›</a>
+</div>
 
 <div id="scroll-progress"></div>
 
@@ -749,6 +837,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://www.isrotel.co.il/?iTrack=9pQAHMNuLDwTHeh_Q1FgdYXVAW7nrsv_Ts9pQAHMNuLDwTHehtS" target="_blank" rel="noopener" class="btn-gold" data-i18n="hero.btnHotels">גלה את המלונות</a>
       <a href="https://www.isrotel.co.il/?iTrack=9pQAHMNuLDwTHeh_Q1FgdYXVAW7nrsv_Ts9pQAHMNuLDwTHehtS" target="_blank" rel="noopener" class="btn-ghost" data-i18n="hero.btnDestinations">כל היעדים</a>
     </div>
+    <p class="hero-trust" data-i18n="hero.trust">✓ הזמנה ישירה באתר הרשמי של ישרוטל • ללא עלות נוספת</p>
   </div>
   <a href="#stats" class="scroll-down" aria-hidden="true">
     <div class="arrow"></div>
@@ -1286,6 +1375,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<!-- ─── STICKY BOOKING BAR ─── -->
+<div id="sticky-cta">
+  <span data-i18n="sticky.text">🔥 עד 25% הנחה במלונות ישרוטל</span>
+  <a href="https://www.isrotel.co.il/?iTrack=9pQAHMNuLDwTHeh_Q1FgdYXVAW7nrsv_Ts9pQAHMNuLDwTHehtS" target="_blank" rel="noopener" class="sticky-btn" data-i18n="sticky.btn">הזמינו עכשיו ›</a>
+</div>
+
 <script>
   /* ── Scroll progress bar ── */
   const progress = document.getElementById('scroll-progress');
@@ -1295,6 +1390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
     progress.style.transform = `scaleX(${scrolled})`;
     navbar.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('sticky-cta').classList.toggle('visible', window.scrollY > 700);
   });
 
   /* ── Scroll-reveal ── */
@@ -1331,6 +1427,78 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     particleContainer.appendChild(p);
   }
 
+  /* ── Affiliate conversion boosters ── */
+  const AFF_URL = 'https://www.isrotel.co.il/?iTrack=9pQAHMNuLDwTHeh_Q1FgdYXVAW7nrsv_Ts9pQAHMNuLDwTHehtS';
+
+  function trackAffiliate(location) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'affiliate_click', click_location: location || 'page' });
+  }
+
+  /* report every affiliate link click to GTM */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href*="iTrack"]');
+    if (!a) return;
+    const sec = a.closest('section[id], div[id], nav, footer');
+    trackAffiliate(sec ? (sec.id || sec.tagName.toLowerCase()) : 'page');
+  });
+
+  /* whole cards and tiles are clickable → affiliate link */
+  function makeClickable(el, location, withOverlay) {
+    el.style.cursor = 'pointer';
+    if (withOverlay) {
+      const wrap = el.querySelector('.card-img-wrap, .featured-img');
+      if (wrap) {
+        const ov = document.createElement('div');
+        ov.className = 'card-hover-cta';
+        ov.innerHTML = '<span data-i18n="card.hover">לצפייה במחירים והזמנה ›</span>';
+        wrap.appendChild(ov);
+      }
+    }
+    el.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      trackAffiliate(location);
+      window.open(AFF_URL, '_blank', 'noopener');
+    });
+  }
+  document.querySelectorAll('.hotel-card').forEach(c => makeClickable(c, 'hotels', true));
+  document.querySelectorAll('.featured-card').forEach(c => makeClickable(c, 'featured', true));
+  document.querySelectorAll('.mosaic-item').forEach(c => makeClickable(c, 'destinations', false));
+  document.querySelectorAll('.testi-card').forEach(c => makeClickable(c, 'reviews', false));
+  document.querySelectorAll('.stat-item').forEach(c => makeClickable(c, 'stats', false));
+  document.querySelectorAll('.why-card').forEach(c => makeClickable(c, 'why', false));
+
+  /* verified guest badge on testimonials */
+  document.querySelectorAll('.testi-meta').forEach(m => {
+    const v = document.createElement('span');
+    v.innerHTML = ' • <span class="verified" data-i18n="testi.verified">✓ אורח מאומת</span>';
+    m.appendChild(v);
+  });
+
+  /* live countdown — summer deals end at the end of the month */
+  const cdWords = {
+    he: { prefix: 'מסתיים בעוד:', days: 'ימים' },
+    en: { prefix: 'Ends in:',     days: 'days' },
+    ru: { prefix: 'До конца:',    days: 'дн.' }
+  };
+  const cdPrefix = document.getElementById('promo-cd-prefix');
+  const cdDays   = document.getElementById('promo-cd-days');
+  const cdTime   = document.getElementById('promo-cd-time');
+  function tickCountdown() {
+    const now = new Date();
+    const end = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    let s = Math.max(0, Math.floor((end - now) / 1000));
+    const d = Math.floor(s / 86400); s -= d * 86400;
+    const h = Math.floor(s / 3600);  s -= h * 3600;
+    const m = Math.floor(s / 60);    s -= m * 60;
+    const w = cdWords[document.documentElement.lang] || cdWords.he;
+    cdPrefix.textContent = w.prefix;
+    cdDays.textContent = d + ' ' + w.days;
+    cdTime.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
   /* ── Language switcher (HE default / EN / RU) ── */
   const i18nEls = Array.from(document.querySelectorAll('[data-i18n]'));
   const originalHe = {};
@@ -1351,6 +1519,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "hero.subtitle": "30+ premium hotels — from tropical Eilat, through the magical Dead Sea, to the Tel Aviv shoreline",
       "hero.btnHotels": "Explore Hotels", "hero.btnDestinations": "All Destinations",
       "partner.badge": "In partnership with Isrotel®",
+      "promo.text": "🔥 Isrotel Summer Sale — up to 25% off, limited time",
+      "promo.btn": "Book Now ›",
+      "sticky.text": "🔥 Up to 25% off Isrotel hotels",
+      "sticky.btn": "Book Now ›",
+      "card.hover": "See prices & book ›",
+      "testi.verified": "✓ Verified guest",
+      "hero.trust": "✓ Direct booking on Isrotel's official website • No extra cost",
       "stats.hotels": "Premium Hotels", "stats.rating": "Average Rating", "stats.guests": "Happy Guests", "stats.experience": "Years of Experience",
       "deals.label": "Hot Deals", "deals.title": "Isrotel's Best Current Deals", "deals.cta": "Details & Booking ›",
       "deal1.title": "Up to 25% Off Early Booking", "deal1.sub": "Book ahead and save across the hotel chain",
@@ -1418,6 +1593,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       "hero.subtitle": "30+ отелей премиум-класса — от тропического Эйлата и волшебного Мёртвого моря до побережья Тель-Авива",
       "hero.btnHotels": "Смотреть отели", "hero.btnDestinations": "Все направления",
       "partner.badge": "В партнёрстве с Isrotel®",
+      "promo.text": "🔥 Летняя распродажа Isrotel — скидки до 25%, время ограничено",
+      "promo.btn": "Забронировать ›",
+      "sticky.text": "🔥 Скидки до 25% в отелях Isrotel",
+      "sticky.btn": "Забронировать ›",
+      "card.hover": "Цены и бронирование ›",
+      "testi.verified": "✓ Проверенный гость",
+      "hero.trust": "✓ Прямое бронирование на официальном сайте Isrotel • Без наценки",
       "stats.hotels": "Отелей премиум-класса", "stats.rating": "Средний рейтинг", "stats.guests": "Довольных гостей", "stats.experience": "Лет опыта",
       "deals.label": "Горячие предложения", "deals.title": "Лучшие акции Isrotel", "deals.cta": "Подробнее и бронирование ›",
       "deal1.title": "Скидка до 25% при раннем бронировании", "deal1.sub": "Бронируйте заранее и экономьте в отелях сети",
