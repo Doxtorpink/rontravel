@@ -109,6 +109,8 @@
     .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
     nav.scrolled .nav-links a { color: var(--text); }
     nav.scrolled .nav-links a:hover { color: var(--navy); }
+    .nav-miluim-link { color: var(--gold) !important; font-weight: 700 !important; }
+    .nav-miluim-link::after { background: var(--gold) !important; }
 
     .nav-right { display: flex; align-items: center; gap: 1rem; }
 
@@ -386,6 +388,93 @@
     .deal-blue   { background: linear-gradient(135deg, var(--blue-mid), var(--sky)); color: white; }
     .deal-navy   { background: linear-gradient(150deg, var(--navy-dark), var(--navy)); color: white; }
     .deal-gold   { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy-dark); }
+
+    /* ─── MILUIM SECTION ─── */
+    .miluim-sec {
+      background: linear-gradient(135deg, #0D2B1A 0%, #133524 50%, #0A1F12 100%);
+      position: relative; overflow: hidden;
+      border-top: 1px solid rgba(201,168,76,0.25);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+    }
+    .miluim-sec::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 15% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 85% 30%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    }
+    .miluim-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      align-items: center; gap: 4rem;
+    }
+    .miluim-badge-wrap {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem;
+    }
+    .miluim-ribbon {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--gold); color: var(--navy-dark);
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.22em;
+      text-transform: uppercase; padding: 0.45rem 1.1rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 18px rgba(201,168,76,0.45);
+    }
+    .miluim-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900; color: white; line-height: 1.1;
+    }
+    .miluim-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .miluim-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.65);
+      line-height: 1.8; max-width: 400px;
+    }
+    .miluim-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--navy-dark); font-weight: 800; font-size: 1.05rem;
+      padding: 1rem 2.6rem; border-radius: 4px; text-decoration: none;
+      transition: 0.25s; letter-spacing: 0.03em;
+      box-shadow: 0 8px 28px rgba(201,168,76,0.4);
+      margin-top: 0.5rem;
+    }
+    .miluim-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(201,168,76,0.55);
+    }
+    .miluim-perks {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .miluim-perk {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 10px; padding: 1.4rem 1.2rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .miluim-perk:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-3px);
+    }
+    .miluim-perk-icon { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; }
+    .miluim-perk h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.3rem; }
+    .miluim-perk p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .miluim-divider {
+      width: 100%; height: 1px; margin: 1rem 0;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
+    }
+    .miluim-note {
+      font-size: 0.74rem; color: rgba(255,255,255,0.35); line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .miluim-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .miluim-perks { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .miluim-perks { grid-template-columns: 1fr; }
+    }
 
     /* ─── FEATURED ─── */
     .featured { background: var(--off); }
@@ -806,6 +895,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#hotels" data-i18n="nav.hotels">מלונות</a></li>
     <li><a href="#destinations" data-i18n="nav.destinations">יעדים</a></li>
     <li><a href="#reviews" data-i18n="nav.reviews">חוות דעת</a></li>
+    <li><a href="#miluim" class="nav-miluim-link">🎖️ מילואים</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-switch" role="group" aria-label="Language">
@@ -941,6 +1031,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ─── MILUIM ─── -->
+<section class="section miluim-sec" id="miluim">
+  <div class="container">
+    <div class="miluim-grid">
+
+      <div class="miluim-badge-wrap reveal">
+        <span class="miluim-ribbon">🎖️ &nbsp;הטבה בלעדית</span>
+        <h2 class="miluim-title">הנחה מיוחדת<br/>למשרתי <em>מילואים</em></h2>
+        <p class="miluim-sub">ישרוטל מוקירה ומכבדת את לוחמי המילואים ומשפחותיהם — עם הטבות נופש בלעדיות שמגיעות לכם בכל לב.</p>
+        <div class="miluim-divider"></div>
+        <a href="https://www.isrotel.co.il/deals/miluim/?iTrack=9pQAHMNuLDwTHeh_h5eFK26gjLs6mQ7_Ts9pQAHMNuLDwTHehtS"
+           target="_blank" rel="noopener" class="miluim-cta">
+          לצפייה בהטבות ולהזמנה ›
+        </a>
+        <p class="miluim-note">* ההנחה כפופה לתנאי ישרוטל ולהצגת תעודת מילואים בעת ההגעה</p>
+      </div>
+
+      <div class="miluim-perks reveal reveal-delay-1">
+        <div class="miluim-perk">
+          <span class="miluim-perk-icon">🏖️</span>
+          <h4>נופש זוגי</h4>
+          <p>חדרים יוקרתיים עם נוף לים, ארוחת בוקר, וגישה לחוף פרטי</p>
+        </div>
+        <div class="miluim-perk">
+          <span class="miluim-perk-icon">♨️</span>
+          <h4>ספא ורוגע</h4>
+          <p>טיפולי ספא מפנקים, בריכות מחוממות ופינוקים שמגיעים לכם</p>
+        </div>
+        <div class="miluim-perk">
+          <span class="miluim-perk-icon">🍽️</span>
+          <h4>חבילות אוכל</h4>
+          <p>מסעדות גורמה, ארוחות ש���ב ובראנץ' שישי מיוחד לחיילים</p>
+        </div>
+        <div class="miluim-perk">
+          <span class="miluim-perk-icon">🌊</span>
+          <h4>כל היעדים</h4>
+          <p>אילת, ים המלח ותל אביב — בחרו את היעד שחלמתם עליו</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ─── FEATURED ─── -->
 <section class="section featured" id="featured">
   <div class="container">
@@ -992,6 +1126,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="tab-btn"        data-filter="ramot"     role="tab" data-i18n="dest.ramot">כנרת</button>
       <button class="tab-btn"        data-filter="mitzpe"    role="tab" data-i18n="dest.mitzpe">מצפה רמון</button>
       <button class="tab-btn"        data-filter="jerusalem" role="tab" data-i18n="dest.jerusalem">הרי ירושלים</button>
+      <button class="tab-btn"        data-filter="galil"     role="tab">גליל</button>
     </div>
 
     <div class="hotels-grid" id="hotel-grid">
@@ -1228,6 +1363,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="card-desc" data-i18n="card.desc.cramim">ריזורט ספא בהרי ירושלים, בריכות מלח ים המלח וטיפולים מפנקים בין האורנים.</p>
           <div class="card-foot">
             <a href="https://www.isrotel.co.il/deals/special-sale/main/?iTrack=9pQAHMNuLDwTHeh_hWtnrwrkxTJBk1f_Ts9pQAHMNuLDwTHehtS" target="_blank" rel="noopener" class="btn-sm" data-i18n="card.cta">לפרטים ולהזמנה ›</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card reveal" data-dest="galil">
+        <div class="card-img-wrap">
+          <img class="card-img"
+               src="https://media.isrotel.co.il/umb/22145/mitzpe-hayamim-spa-pool.jpg"
+               alt="מצפה הימים גליל"
+               loading="lazy"
+               onerror="this.src='https://media.isrotel.co.il/umb/28652/127588_pics1600x400_b2.jpg'" />
+          <span class="card-badge">🌿 בוטיק • גליל עליון</span>
+          <span class="card-dest-chip">גליל</span>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">★ ★ ★ ★ ★</div>
+          <div class="card-name">מצפה הימים</div>
+          <p class="card-desc">מלון ספא בוטיק יוקרתי בגליל העליון עם נוף פנורמי לכנרת. גינות ארומתרפיה, בריכות מחוממות וחוויית בריאות בלתי נשכחת בטבע הישראלי.</p>
+          <div class="card-foot">
+            <a href="https://www.isrotel.co.il/isrotel-hotels/north-hotels/galil/%D7%9E%D7%A6%D7%A4%D7%94_%D7%94%D7%99%D7%9E%D7%99%D7%9D/?iTrack=9pQAHMNuLDwTHeh_0lD6nTx2aKx3D3b_Ts9pQAHMNuLDwTHehtS"
+               target="_blank" rel="noopener" class="btn-sm">לפרטים ולהזמנה ›</a>
           </div>
         </div>
       </div>
